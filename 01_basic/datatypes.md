@@ -1,6 +1,6 @@
 # Object Types / Data Types
 
-- Number : 1234, 3.142, 3+4j, 0b111, Decimals(), Fraction(), Infinity, -Infinity, NaN (Not a number)
+- Number : 1234, 3.142, 3+4j, 0b111, 0o24, 0h232, Decimals(), Fraction(), Infinity, -Infinity, NaN (Not a number)
 - String : 'Hello', "World" , b'a\x01c', u'sp\xc4m'
 - Boolean : True, False
 - List : [1, 2, 3], ['a', 'b'], [a, 2, [3.14, 'three'], 5], list(range(10))
@@ -14,6 +14,8 @@
 - None: None
 - Functions, modules, classes
 - Advance: Decorators, Generators, Iterators, MetaProgramming
+
+
 
 
 
