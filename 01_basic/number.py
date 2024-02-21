@@ -50,7 +50,22 @@ from decimal import Decimal
 
 from fractions import Fraction
 
-print(Fraction(2,8))
+# print(Fraction(2,8))
+
+
+# sets
+# a = {1,2,3,4,5,6}
+# b = {1,2,4,6,8}
+
+# print(a & b)
+# print(a | b)
+# print(a ^ b)
+# print(a - b)
+print(type(a))
+
+
+
+
 
 
 
