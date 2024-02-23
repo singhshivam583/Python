@@ -3,4 +3,5 @@ def square(number):
 
 
 result = square(4)
-print(16)
+print(result)
+print(square(9))
