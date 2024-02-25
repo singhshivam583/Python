@@ -1,41 +1,61 @@
 import sqlite3
 
-connection = sqlite3.connect('youtube_video.db')
+try:
+    connection = sqlite3.connect('youtube_video.db')
+    cursor = connection.cursor()
 
-cursor = connection.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS videos (
+            id INTEGER PRIMARY KEY, 
+            name TEXT, 
+            duration TEXT
+        )
+    ''')
 
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS videos (
-        id INTEGER PRIMARY KEY, 
-        name TEXT, 
-        duration TEXT
-    )
-''')
+except Exception as e:
+    print("Error:", e)
+    exit()
 
 
 def list_videos():
-    print('\n')
-    print('*' * 50)
-    videos = cursor.execute("SELECT * FROM videos")
-    # print(videos)
-    # for row in cursor.fetchall():
-    for row in videos.fetchall():
-        print(row)
-    print('*' * 50)
-    print('\n')
+    try:
+        print('\n')
+        print('*' * 50)
+        videos = cursor.execute("SELECT * FROM videos")
+        for row in videos.fetchall():
+            print(row)
+        print('*' * 50)
+        print('\n')
+    except Exception as e:
+        print("Error:", e)
+
 
 def add_video(name, duration):
-    cursor.execute("INSERT INTO videos (name, duration) VALUES (?, ?)", (name, duration))
-    connection.commit()
+    try:
+        cursor.execute("INSERT INTO videos (name, duration) VALUES (?, ?)", (name, duration))
+        connection.commit()
+        print("Video added successfully.")
+    except Exception as e:
+        print("Error:", e)
+
 
 def update_video(id, name, duration):
-    cursor.execute("UPDATE videos SET name = ?, duration = ? WHERE id = ?", (name, duration, id))
-    connection.commit()
-    
+    try:
+        cursor.execute("UPDATE videos SET name = ?, duration = ? WHERE id = ?", (name, duration, id))
+        connection.commit()
+        print("Video updated successfully.")
+    except Exception as e:
+        print("Error:", e)
+
 
 def delete_video(id):
-    cursor.execute("DELETE FROM videos WHERE id = ?", (id,))
-    connection.commit()
+    try:
+        cursor.execute("DELETE FROM videos WHERE id = ?", (id,))
+        connection.commit()
+        print("Video deleted successfully.")
+    except Exception as e:
+        print("Error:", e)
+
 
 def main():
     while True:
@@ -70,14 +90,15 @@ def main():
             delete_video(id)
 
         elif choice == '5':
-            # exit()
             break
 
         else:
             print("Invalid choice")
             continue
-     # closing connection after exit   
+
+    # closing connection after exit
     connection.close()
+
 
 if __name__ == "__main__":
     main()
